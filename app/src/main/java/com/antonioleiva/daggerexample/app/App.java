@@ -43,6 +43,35 @@ public class App extends Application {
         objectGraph.inject(this);
         analyticsManager.registerAppEnter();
     }
+    package com.example.calculate_me_app
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import com.sawolabs.androidsdk.Sawo
+
+
+class Login : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+    }
+    fun onClickLogin(view: View) {
+        Sawo(
+            this,
+            "6497fffc-ed7f-408c-bc83-f698210777ef", // your api key,
+            "616082deaaa97bd4878dc750TMyKg73BDo9McuGu8xHuuMlx" // your secret key
+        ).login(
+            "email", // can be one of 'email' or 'phone_number_sms'
+            CallbackActivity::class.java.name // Callback class name
+        )
+    }
+}
 
     private List<Object> getModules() {
         return Arrays.<Object>asList(new AppModule(this));
